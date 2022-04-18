@@ -9,7 +9,7 @@ const layout = {
   wrapperCol: { span: 16 },
 };
 
-const RegisterModule = ({ userDetails, setUserDetails, handleChange }) => {
+const RegisterModule = ({ onFinish }) => {
   const { Title } = Typography;
   return (
     <>
@@ -20,7 +20,12 @@ const RegisterModule = ({ userDetails, setUserDetails, handleChange }) => {
           display: "flex",
         }}
       >
-        <Form {...layout} name="nest-messages" style={{ marginTop: 100 }}>
+        <Form
+          {...layout}
+          name="nest-messages"
+          style={{ marginTop: 100 }}
+          onFinish={onFinish}
+        >
           <Title
             level={4}
             style={{
@@ -32,7 +37,7 @@ const RegisterModule = ({ userDetails, setUserDetails, handleChange }) => {
             REGISTER
           </Title>
           <Form.Item
-            name="name"
+            name="username"
             label="Name"
             rules={[{ required: true, message: "username is required!" }]}
             style={{ padding: "3%" }}
@@ -40,13 +45,10 @@ const RegisterModule = ({ userDetails, setUserDetails, handleChange }) => {
             <Input
               placeholder="Please enter your username"
               style={{ width: 300, height: 30 }}
-              onChange={(e) =>
-                setUserDetails({ ...userDetails, username: e.target.value })
-              }
             />
           </Form.Item>
           <Form.Item
-            name="number"
+            name="mobile"
             label="Mobile no"
             rules={[{ required: true, message: "number is required!" }]}
             style={{ padding: "3%" }}
@@ -54,23 +56,15 @@ const RegisterModule = ({ userDetails, setUserDetails, handleChange }) => {
             <Input
               placeholder="Please enter your mobile number"
               style={{ width: 300, height: 30 }}
-              onChange={(e) =>
-                setUserDetails({ ...userDetails, mobile: e.target.value })
-              }
             />
           </Form.Item>
-          <Email userDetails={userDetails} setUserDetails={setUserDetails} />
-          <Password userDetails={userDetails} setUserDetails={setUserDetails} />
+          <Email />
+          <Password />
           <Form.Item
             wrapperCol={{ offset: 8, span: 16 }}
             style={{ padding: "3%" }}
           >
-            <Button
-              type="primary"
-              htmlType="submit"
-              style={{ padding: "2%" }}
-              onClick={handleChange}
-            >
+            <Button type="primary" htmlType="submit" style={{ padding: "2%" }}>
               Register
             </Button>
           </Form.Item>

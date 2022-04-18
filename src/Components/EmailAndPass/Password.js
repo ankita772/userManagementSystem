@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input } from "antd";
 
-const Password = ({ userDetails, setUserDetails }) => {
+const Password = () => {
   return (
     <>
       <Form.Item
@@ -13,9 +13,6 @@ const Password = ({ userDetails, setUserDetails }) => {
         <Input.Password
           placeholder="Please enter your password"
           style={{ width: 300, height: 30 }}
-          onChange={(e) =>
-            setUserDetails({ ...userDetails, password: e.target.value })
-          }
         />
       </Form.Item>
     </>

@@ -15,6 +15,21 @@ const createUser = async (val) => {
   const data = await res.json();
   return data;
 };
+const loginUser = async (val) => {
+  let fetchData = {
+    method: "POST",
+    body: JSON.stringify({
+      email: val.email,
+      password: val.password,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+  };
+  const res = await fetch("http://localhost:5000/login-user", fetchData);
+  const data = await res.json();
+  return data;
+};
 
 const getAllUser = async () => {
   const res = await fetch("http://localhost:5000/get-all-user");
@@ -69,4 +84,4 @@ const deleteUser = async (userId) => {
   return data;
 };
 
-export { createUser, getAllUser, updateUser, deleteUser };
+export { createUser, getAllUser, updateUser, deleteUser, loginUser };

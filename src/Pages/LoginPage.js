@@ -1,28 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import LoginModule from "../Components/Module/LoginModule";
+import { authContext } from "../App";
+import { loginUser } from "../Api";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const [userDetails, setUserDetails] = useState({
-    email: "",
-    password: "",
-  });
-  const handleChange = () => {
-    if (
-      userDetails.usename !== "" &&
-      userDetails.mobile.length === 10 &&
-      userDetails.email !== "" &&
-      userDetails.password.length >= 6
-    ) {
-      console.log("success");
+  const { auth, setAuth } = useContext(authContext);
+  const navigate = useNavigate();
+
+  const onFinish = async (values) => {
+    const data = await loginUser(values);
+    if (data.token) {
+      localStorage.setItem("data", data);
+      setAuth(data);
+      navigate("/dashboard");
     }
+    console.log("success");
   };
   return (
     <>
-      <LoginModule
-        userDetails={userDetails}
-        setUserDetails={setUserDetails}
-        handleChange={handleChange}
-      />
+      <LoginModule onFinish={onFinish} />
     </>
   );
 };

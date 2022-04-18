@@ -8,7 +8,7 @@ const layout = {
   wrapperCol: { span: 16 },
 };
 
-const LoginModule = ({ userDetails, setUserDetails, handleChange }) => {
+const LoginModule = ({ onFinish }) => {
   const { Title } = Typography;
 
   return (
@@ -25,6 +25,7 @@ const LoginModule = ({ userDetails, setUserDetails, handleChange }) => {
           name="normal_login"
           style={{ marginTop: 100 }}
           initialValues={{ remember: true }}
+          onFinish={onFinish}
         >
           <Title
             level={4}
@@ -37,8 +38,8 @@ const LoginModule = ({ userDetails, setUserDetails, handleChange }) => {
             LOGIN
           </Title>
 
-          <Email userDetails={userDetails} setUserDetails={setUserDetails} />
-          <Password userDetails={userDetails} setUserDetails={setUserDetails} />
+          <Email />
+          <Password />
           <Form.Item
             wrapperCol={{ offset: 8, span: 16 }}
             style={{ padding: "3%" }}
@@ -47,13 +48,12 @@ const LoginModule = ({ userDetails, setUserDetails, handleChange }) => {
               type="primary"
               htmlType="submit"
               style={{ padding: "2%", marginBottom: 8 }}
-              onClick={handleChange}
             >
               Log in
             </Button>
             <br />
             Or{" "}
-            <a href="#" style={{ padding: "3%" }}>
+            <a href="/" style={{ padding: "3%" }}>
               register now!
             </a>
           </Form.Item>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input } from "antd";
 
-const Email = ({ userDetails, setUserDetails }) => {
+const Email = () => {
   return (
     <>
       <Form.Item
@@ -22,9 +22,6 @@ const Email = ({ userDetails, setUserDetails }) => {
         <Input
           placeholder="Please enter your email"
           style={{ width: 300, height: 30 }}
-          onChange={(e) =>
-            setUserDetails({ ...userDetails, email: e.target.value })
-          }
         />
       </Form.Item>
     </>
